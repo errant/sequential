@@ -23,7 +23,18 @@ class Sequence {
      */
     public function __construct($connection) 
     {
-        $this->_client = new new Predis\Client($connection)
+        $this->_client = new \Predis\Client($connection);
+    }
+
+    /**
+     * Reset Sequence to 0
+     *
+     * @author Tom Morton
+     * @param string $sequence The Redis key to reset
+     */
+    public function reset($sequence)
+    {
+        return $this->_client->getset($sequence, '0');
     }
 
     /**

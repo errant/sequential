@@ -15,4 +15,7 @@ With composer:
 
 You can also format IDs:
 
-    echo $sequencer->getNextIDFormatted('test_sequence', function($sequence) { return pad_left($sequence, 4, '0'); });
+    function padFormat($sequence) {
+        return str_pad($sequence, 5, '0', STR_PAD_LEFT);
+    }
+    echo $sequencer->getNextIDFormatted('test_sequence', padFormat);
